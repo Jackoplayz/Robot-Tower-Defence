@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    public Transform leftCannon;
+    public Transform rightCannon;
     public float shootDelay;
     public float shootCountdown;
     public GameObject bulletPrefab;
@@ -28,13 +30,31 @@ public class Turret : MonoBehaviour
         }
     }
 
+    public void AimAtTarget()
+    {
+        Vector3 closestEnemyPosition = FindClosestTransform().position;
+        Vector2 direction = closestEnemyPosition - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+    public void RemoveEnemyFromList(Transform enemyTransform)
+    {
+        enemiesInRange.Remove(enemyTransform);
+    }
+
     private void ShootBullet()
     {
-        GameObject shotBullet = Instantiate(bulletPrefab);
-        bullet bulletScript = shotBullet.GetComponent<bullet>();
-        if (bulletScript != null)
+        GameObject leftshotBullet = Instantiate(bulletPrefab,leftCannon.position,Quaternion.identity);
+        GameObject rightshotBullet = Instantiate(bulletPrefab, rightCannon.position, Quaternion.identity);
+        bullet leftbulletScript = leftshotBullet.GetComponent<bullet>();
+        bullet rightbulletScript = rightshotBullet.GetComponent<bullet>();
+        if (leftbulletScript != null)
         {
-            bulletScript.target = FindClosestTransform();
+            leftbulletScript.target = FindClosestTransform();
+        }
+        if (rightbulletScript != null)
+        {
+            rightbulletScript.target = FindClosestTransform();
         }
     }
 
