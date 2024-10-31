@@ -22,9 +22,11 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AimAtTarget();
         shootCountdown += Time.deltaTime;
         if (shootCountdown >= shootDelay)
         {
+            
             ShootBullet();
             shootCountdown -= shootDelay;
         }
@@ -32,6 +34,10 @@ public class Turret : MonoBehaviour
 
     public void AimAtTarget()
     {
+        if (FindClosestTransform() == null)
+        {
+            return;
+        }
         Vector3 closestEnemyPosition = FindClosestTransform().position;
         Vector2 direction = closestEnemyPosition - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;

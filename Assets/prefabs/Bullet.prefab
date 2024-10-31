@@ -98,5 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 10
-  bulletDamage: 5
+  bulletDamage: 4
   target: {fileID: 0}
