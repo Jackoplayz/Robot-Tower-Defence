@@ -5,9 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public int health;
+    public float health;
     
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
         if (health <= 0)
@@ -16,6 +16,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int damageAmount)
+    {
+        health -= damageAmount;
+        if (health <= 0)
+        {
+            Death();
+        }
+    }
     public void NotifyTurretsOfDeath()
     {
         Turret[] allTurrets = FindObjectsOfType<Turret>();

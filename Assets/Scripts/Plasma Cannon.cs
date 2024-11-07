@@ -2,40 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class PlasmaCannon : MonoBehaviour
 {
     public bool isLazer;
     public Transform laserOrigin;
+    
     public float damagePerSecond;
-    public Transform leftCannon;
-    public Transform rightCannon;
-    public float shootDelay;
-    public float shootCountdown;
-    public GameObject bulletPrefab;
-    public List<Transform> enemiesInRange = new List<Transform>();
+    public LineRenderer myLineRenderer;
+  
+
+    public List<Transform> laserEnemiesInRange = new List<Transform>();
     //public float Range; do later
     //public float Reload; do later.
-   
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (myLineRenderer == null)
+        {
+            myLineRenderer = GetComponent<LineRenderer>();
+        }
+        myLineRenderer.positionCount = 2;
+        myLineRenderer.enabled = false;
+        myLineRenderer.startWidth = 1;
+        myLineRenderer.endWidth = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         AimAtTarget();
-        if (isLazer == true)
+        Transform target = FindClosestTransform();
+        if (target != null )
         {
+            myLineRenderer.enabled = true;
+            myLineRenderer.SetPosition(0, laserOrigin.position);
+            myLineRenderer.SetPosition(1, target.position);
+
+            Enemy myEnemy = target.GetComponent<Enemy>();
+            if (myEnemy != null)
+            {
+                myEnemy.TakeDamage(damagePerSecond * Time.deltaTime);
+            }
+
 
         }
-        shootCountdown += Time.deltaTime;
-        if (shootCountdown >= shootDelay)
+        else
         {
-            
-            ShootBullet();
-            shootCountdown -= shootDelay;
+            myLineRenderer.enabled = false;
         }
     }
 
@@ -52,55 +66,41 @@ public class Turret : MonoBehaviour
     }
     public void RemoveEnemyFromList(Transform enemyTransform)
     {
-        enemiesInRange.Remove(enemyTransform);
+        laserEnemiesInRange.Remove(enemyTransform);
     }
 
-    private void ShootBullet()
-    {
-        GameObject leftshotBullet = Instantiate(bulletPrefab,leftCannon.position,Quaternion.identity);
-        GameObject rightshotBullet = Instantiate(bulletPrefab, rightCannon.position, Quaternion.identity);
-        bullet leftbulletScript = leftshotBullet.GetComponent<bullet>();
-        bullet rightbulletScript = rightshotBullet.GetComponent<bullet>();
-        if (leftbulletScript != null)
-        {
-            leftbulletScript.target = FindClosestTransform();
-        }
-        if (rightbulletScript != null)
-        {
-            rightbulletScript.target = FindClosestTransform();
-        }
-    }
+   
 
 
     public Transform FindClosestTransform()
     {
-        for (int i = enemiesInRange.Count - 1; i >= 0; i--) 
+        for (int i = laserEnemiesInRange.Count - 1; i >= 0; i--)
         {
-            if (enemiesInRange[i] == null )
+            if (laserEnemiesInRange[i] == null)
             {
-                enemiesInRange.RemoveAt(i);
+                laserEnemiesInRange.RemoveAt(i);
             }
         }
-        if (enemiesInRange.Count == 0)
+        if (laserEnemiesInRange.Count == 0)
         {
             return null;
         }
         Transform closest = null;
         float closestDistance = 1000f;
-        
-        foreach(Transform t in enemiesInRange)
+
+        foreach (Transform t in laserEnemiesInRange)
         {
             if (t == null)
             {
                 continue;
             }
             float distance = Vector3.Distance(t.position, transform.position);
-            if(distance < closestDistance)
+            if (distance < closestDistance)
             {
                 closest = t;
                 closestDistance = distance;
             }
-            
+
         }
         return closest;
     }
@@ -108,7 +108,7 @@ public class Turret : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            enemiesInRange.Add(collision.transform);
+            laserEnemiesInRange.Add(collision.transform);
             //Debug.Log("Enemy has enter the Range");
         }
     }
@@ -117,11 +117,10 @@ public class Turret : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            enemiesInRange.Remove(collision.transform);
+            laserEnemiesInRange.Remove(collision.transform);
         }
 
 
     }
-
 
 }
