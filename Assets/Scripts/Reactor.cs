@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Reactor : MonoBehaviour
 {
+    public Text reactorHealthText;
     public int health;
     public int maxHealth;
     // Start is called before the first frame update
     void Start()
     {
-        
+        reactorHealthText.text = health.ToString();
     }
 
     // Update is called once per frame
@@ -22,6 +24,9 @@ public class Reactor : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             health -= 1;
+            collision.GetComponent<Enemy>().Death();
+                
+            reactorHealthText.text = health.ToString();
         }
 
 
