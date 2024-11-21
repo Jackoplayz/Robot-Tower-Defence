@@ -10,6 +10,7 @@ public class Turret : MonoBehaviour
     public Transform leftCannon;
     public Transform rightCannon;
     public float shootDelay;
+    public bool isStunned = false;
     public float shootCountdown;
     public GameObject bulletPrefab;
     public List<Transform> enemiesInRange = new List<Transform>();
@@ -25,6 +26,10 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isStunned == true)
+        {
+            return;
+        }
         AimAtTarget();
         if (isLazer == true)
         {
@@ -39,6 +44,15 @@ public class Turret : MonoBehaviour
         }
     }
 
+    public void Stun(float duration)
+    {
+        isStunned = true;
+        Invoke("EndStun",duration);
+    }
+    public void EndStun()
+    {
+        isStunned = false;
+    }
     public void AimAtTarget()
     {
         if (FindClosestTransform() == null)

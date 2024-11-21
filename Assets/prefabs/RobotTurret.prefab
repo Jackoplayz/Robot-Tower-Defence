@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4494309802032629344}
   m_Layer: 0
   m_Name: RobotTurret
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 2276580122556907519}
   - {fileID: 6195508392723698825}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6069787204976431071
 SpriteRenderer:
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -43058635, guid: 90c2bfcdba33f7f4a83409ff3ca08da8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1.6, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
@@ -102,6 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b428d5379acf0e4493eb1a4282dfec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLazer: 0
+  laserOrigin: {fileID: 0}
+  damagePerSecond: 0
   leftCannon: {fileID: 6195508392723698825}
   rightCannon: {fileID: 2276580122556907519}
   shootDelay: 1
