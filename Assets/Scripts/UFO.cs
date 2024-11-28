@@ -21,7 +21,7 @@ public class UFO : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= timeBeforeShooting)
         {
-            //shoot here
+            ShootStunRocket();
             timer = 0f;
         }
     }
@@ -33,7 +33,7 @@ public class UFO : MonoBehaviour
         if (closestTurret != null)
         {
             GameObject projectile = Instantiate(stunProjectilePrefab,transform.position,Quaternion.identity);
-            // Set stun projectile's Target
+            projectile.GetComponent<StunRocket>().target = closestTurret.transform;
         }
     }
 
