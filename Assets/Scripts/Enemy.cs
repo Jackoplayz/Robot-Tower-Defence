@@ -6,7 +6,13 @@ public class Enemy : MonoBehaviour
 {
 
     public float health;
-    
+    public EnemyManager myEnemyManager;
+
+
+    public void Start()
+    {
+        myEnemyManager = FindObjectOfType<EnemyManager>();
+    }
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
@@ -36,6 +42,7 @@ public class Enemy : MonoBehaviour
     public void Death()
     {
         NotifyTurretsOfDeath();
+        myEnemyManager.aliveEnemyList.Remove(this);
         Destroy(gameObject);
     }
     
