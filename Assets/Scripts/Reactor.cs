@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Reactor : MonoBehaviour
@@ -27,6 +28,10 @@ public class Reactor : MonoBehaviour
             collision.GetComponent<Enemy>().Death();
                 
             reactorHealthText.text = health.ToString();
+            if (health <= 0)
+            {
+                SceneManager.LoadScene("Galaxymap");
+            }
         }
 
 
