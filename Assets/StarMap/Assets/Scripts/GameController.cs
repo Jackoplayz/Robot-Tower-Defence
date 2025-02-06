@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 {
     public GameObject headQuarters;
     public Ship spaceShip;
-    List<GameObject> stars = new List<GameObject>();
+    public List<GameObject> stars = new List<GameObject>();
     public float minStarSpacing = 1;
     public GameObject starPrefab;
     public static GameController instance;

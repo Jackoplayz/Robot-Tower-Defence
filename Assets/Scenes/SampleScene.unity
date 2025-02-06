@@ -464,7 +464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -289.4, y: 0}
+  m_AnchoredPosition: {x: -293, y: -144.25}
   m_SizeDelta: {x: 566.5, y: 288.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418225715
@@ -1904,6 +1904,34 @@ PrefabInstance:
     - target: {fileID: 787346615404419669, guid: 56e6985447ad9e54fbbc105cc2d5bf81, type: 3}
       propertyPath: m_Name
       value: Reactor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345714473884471343, guid: 56e6985447ad9e54fbbc105cc2d5bf81, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345714473884471343, guid: 56e6985447ad9e54fbbc105cc2d5bf81, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345714473884471343, guid: 56e6985447ad9e54fbbc105cc2d5bf81, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ffa5e3bcd15a1b942aa1face4ef55490, type: 3}
+    - target: {fileID: 3345714473884471343, guid: 56e6985447ad9e54fbbc105cc2d5bf81, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345714473884471343, guid: 56e6985447ad9e54fbbc105cc2d5bf81, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345714473884471343, guid: 56e6985447ad9e54fbbc105cc2d5bf81, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345714473884471343, guid: 56e6985447ad9e54fbbc105cc2d5bf81, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3522912715665904101, guid: 56e6985447ad9e54fbbc105cc2d5bf81, type: 3}
       propertyPath: health

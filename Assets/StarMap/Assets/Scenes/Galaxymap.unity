@@ -934,13 +934,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headQuarters: {fileID: 1719542162}
   spaceShip: {fileID: 1012481225}
+  stars: []
   minStarSpacing: 2
   starPrefab: {fileID: 7406381102980561400, guid: 7b55bff071255ec4c96d95e3a7c582df, type: 3}
   minX: -8.3
   maxX: 8.3
   minY: -2.4
   maxY: 3.5
-  starsAmount: 2
+  starsAmount: 4
   shipYOffset: 1
   shipYOffsetHeadquarters: -0.17
   shipXOffsetHeadquarters: 1.5
